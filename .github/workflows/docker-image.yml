@@ -22,6 +22,7 @@ jobs:
         logout: true
     
     - name: docker pull cache image
+      continue-on-error: true
       run: docker pull baoduy2412/dev-environments-pulumi:latest
       
     - name: Build the Docker image

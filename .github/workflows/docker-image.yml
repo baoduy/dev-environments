@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: 
+      run: |
         docker buildx build . --file pulumi.dockerfile --tag baoduy2412/dev-environments-pulumi:$(date +%s)
         docker image ls

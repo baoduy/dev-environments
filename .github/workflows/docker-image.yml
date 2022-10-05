@@ -28,13 +28,11 @@ jobs:
       
     - name: Build the Docker image
       run: |
-        docker buildx build . --file pulumi.dockerfile --tag baoduy2412/dev-environments-pulumi:${{env.version}} --cache-from=${{ env.Image_Name }}:latest
+        docker buildx build . --file pulumi.dockerfile --tag baoduy2412/dev-environments-pulumi:${{env.version}} --tag baoduy2412/dev-environments-pulumi:latest --cache-from=baoduy2412/dev-environments-pulumi:latest
         docker image ls
         
     - name: Push Image to Docker Hub
-      run: |
-        docker tag baoduy2412/dev-environments-pulumi:${{env.version}} baoduy2412/dev-environments-pulumi:latest
-        docker push baoduy2412/dev-environments-pulumi --all-tags
+      run: docker push baoduy2412/dev-environments-pulumi --all-tags
         
         
     

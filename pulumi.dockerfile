@@ -25,7 +25,7 @@ RUN npm install -g npm-check-updates
 
 RUN sudo apt install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
-ENV PATH="$PATH:/home/vscode/.pulumi/bin"
+ENV PATH="$PATH:/home/root/.pulumi/bin"
 
 RUN node --version
 RUN npm --version

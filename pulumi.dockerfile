@@ -23,7 +23,7 @@ RUN chown -R vscode:vscode /src
 RUN chmod 755 /src
 USER vscode
 
-RUN sudo apt install curl -y
+#RUN sudo apt install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/home/vscode/.pulumi/bin"
 

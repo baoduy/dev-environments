@@ -15,8 +15,6 @@ RUN pip3 install azure-cli
 
 RUN npm install -g npm-check-updates
 
-#RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
 # RUN useradd -s /bin/bash -m vscode \
 #     && groupadd docker \
 #     && usermod -aG docker vscode
@@ -25,6 +23,7 @@ RUN npm install -g npm-check-updates
 # RUN chmod 755 /src
 # USER vscode
 
+RUN sudo apt install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/home/vscode/.pulumi/bin"
 

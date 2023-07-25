@@ -15,19 +15,19 @@ RUN pip3 install azure-cli
 
 RUN npm install -g npm-check-updates
 
-# RUN useradd -s /bin/bash -m vscode \
-#     && groupadd docker \
-#     && usermod -aG docker vscode
+RUN useradd -s /bin/bash -m vscode \
+     && groupadd docker \
+     && usermod -aG docker vscode
 
-# RUN chown -R vscode:vscode /src
-# RUN chmod 755 /src
-# USER vscode
+RUN chown -R vscode:vscode /src
+RUN chmod 755 /src
+USER vscode
 
 RUN sudo apt install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
-ENV PATH="$PATH:/home/root/.pulumi/bin"
+ENV PATH="$PATH:/home/vscode/.pulumi/bin"
 
 RUN node --version
 RUN npm --version
-RUN pulumi version
 RUN az --version
+RUN pulumi version

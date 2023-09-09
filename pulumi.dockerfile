@@ -1,4 +1,6 @@
-FROM nikolaik/python3.11-nodejs18-slim as development
+FROM nikolaik/python-nodejs:python3.11-nodejs18-slim as development
+LABEL org.opencontainers.image.authors="drunkcoding.net <drunkcoding@outlook.com>"
+
 ARG TARGETARCH
 ARG BUILDPLATFORM
 WORKDIR /src

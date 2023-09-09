@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.11-nodejs18-slim as development
+FROM bitnami/azure-cli:latest as development
 LABEL org.opencontainers.image.authors="drunkcoding.net <drunkcoding@outlook.com>"
 
 ARG TARGETARCH
@@ -10,12 +10,10 @@ USER root
 # Install tools
 RUN apt-get update -y \
     && apt-get install curl -y \
-    && apt-get install git -y #\
-    #&& apt-get install sudo -y
+    && apt-get install git -y
 
-RUN apt-get install gcc python3-dev
-RUN pip install --upgrade pip
-RUN pip install azure-cli
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+RUN apt-get install nodejs
 
 RUN npm install -g npm@latest \
   && npm install -g npm-check-updates

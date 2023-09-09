@@ -10,7 +10,8 @@ USER root
 # Install tools
 RUN apt-get update -y \
     && apt-get install curl -y \
-    && apt-get install git -y
+    && apt-get install git -y \
+    && apt-get install sudo -y
 
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 RUN apt-get install nodejs
@@ -29,7 +30,9 @@ RUN npm install -g npm@latest \
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/root/.pulumi/bin"
 
+# Ensure the tool installed sucessfully
 RUN node --version
 RUN npm --version
-RUN az --version
 RUN pulumi version
+RUN az --version
+

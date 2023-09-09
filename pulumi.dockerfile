@@ -13,7 +13,7 @@ RUN apt-get update -y \
     && apt-get install git -y #\
     #&& apt-get install sudo -y
 
-RUN apt add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+RUN apt-get install gcc python3-dev
 RUN pip install --upgrade pip
 RUN pip install azure-cli
 

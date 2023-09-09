@@ -13,9 +13,9 @@ RUN apt-get update -y \
     && apt-get install git -y #\
     #&& apt-get install sudo -y
 
-RUN apt add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make \
-    && pip install --upgrade pip \
-    && pip3 install azure-cli
+RUN apt add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+RUN pip install --upgrade pip
+RUN pip install azure-cli
 
 RUN npm install -g npm@latest \
   && npm install -g npm-check-updates

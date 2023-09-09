@@ -1,4 +1,6 @@
 FROM node:18-slim as development
+ARG TARGETARCH
+ARG BUILDPLATFORM
 WORKDIR /src
 
 USER root
@@ -10,7 +12,7 @@ RUN apt-get update \
 
 #RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN sudo apt install python3-pip -y
-RUN pip3 install "pip>=20"
+RUN if['$TARGETARCH'='linux/arm64']; then pip3 install "pip>=20";
 RUN pip3 install azure-cli
 
 RUN npm install -g npm-check-updates

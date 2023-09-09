@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.11-nodejs18-slim as development
+FROM nikolaik/python-nodejs:python3.11-nodejs18-alpine as development
 LABEL org.opencontainers.image.authors="drunkcoding.net <drunkcoding@outlook.com>"
 
 ARG TARGETARCH
@@ -8,11 +8,11 @@ WORKDIR /src
 USER root
 
 # Install tools
-#RUN apt-get update \
-#    && apt-get install -y git \
-#    && apt-get -y install sudo
+RUN apt-get update -y \
+    && apt-get install curl -y \
+    && apt-get install git git \
+    && && apt-get -y install sudo
 
-#RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 #RUN sudo apt install python3-pip -y
 #RUN pip3 install "pip>=20"
 RUN pip3 install azure-cli
@@ -27,7 +27,6 @@ RUN npm install -g npm-check-updates
 #RUN chmod 755 /src
 #USER vscode
 
-RUN apt-get update && apt-get install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/root/.pulumi/bin"
 

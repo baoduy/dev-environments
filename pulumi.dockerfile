@@ -1,4 +1,4 @@
-FROM node:19-slim as development
+FROM node:18-slim as development
 WORKDIR /src
 
 USER root

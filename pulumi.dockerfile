@@ -16,6 +16,7 @@ USER root
 #RUN sudo apt install python3-pip -y
 #RUN pip3 install "pip>=20"
 RUN pip3 install azure-cli
+RUN npm install -g npm@latest
 RUN npm install -g npm-check-updates
 
 #RUN useradd -s /bin/bash -m vscode \
@@ -26,7 +27,7 @@ RUN npm install -g npm-check-updates
 #RUN chmod 755 /src
 #USER vscode
 
-RUN sudo apt install curl -y
+RUN apt-get update && apt-get install curl -y
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/root/.pulumi/bin"
 

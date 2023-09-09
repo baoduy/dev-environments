@@ -15,9 +15,12 @@ RUN apt-get update -y \
 
 #RUN sudo apt install python3-pip -y
 #RUN pip3 install "pip>=20"
-RUN pip3 install azure-cli
-RUN npm install -g npm@latest
-RUN npm install -g npm-check-updates
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make \
+    && pip install --upgrade pip \
+    && pip3 install azure-cli
+
+RUN npm install -g npm@latest \
+  && npm install -g npm-check-updates
 
 #RUN useradd -s /bin/bash -m vscode \
 #     && groupadd docker \

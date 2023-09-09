@@ -13,8 +13,14 @@ RUN apt-get update -y \
     && apt-get install git -y \
     && apt-get install sudo -y
 
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-RUN apt-get install nodejs
+RUN sudo apt-get update
+RUN sudo apt-get install -y ca-certificates curl gnupg
+RUN sudo mkdir -p /etc/apt/keyrings
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+RUN sudo apt-get update
+RUN sudo apt-get install nodejs -y
 
 RUN npm install -g npm@latest \
   && npm install -g npm-check-updates
@@ -28,11 +34,11 @@ RUN npm install -g npm@latest \
 #USER vscode
 
 RUN curl -fsSL https://get.pulumi.com | sh
-ENV PATH="$PATH:/root/.pulumi/bin"
+ENV PATH="$PATH:/.pulumi/bin"
 
 # Ensure the tool installed sucessfully
 RUN node --version
 RUN npm --version
-RUN pulumi version
 RUN az --version
+RUN pulumi version
 

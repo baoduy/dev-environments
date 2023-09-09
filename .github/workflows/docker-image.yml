@@ -1,44 +1,18 @@
-name: Docker Image CI
+name: Build-Docker
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'main'
 
-env:
-  version: $(date +%s)
-  
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Docker Setup Buildx
-      uses: docker/setup-buildx-action@v2.9.1
-      with:
-        platforms: linux/arm64,linux/amd64
-        
-    - name: Docker Login
-      uses: docker/login-action@v2.0.0
-      with:
-        username: baoduy2412
-        password: ${{ secrets.DOCKER_TOKEN }}
-        ecr: auto
-        logout: true
-    
-    - name: docker pull cache image
-      continue-on-error: true
-      run: docker pull baoduy2412/dev-environments-pulumi:latest
-      
-    - name: Build the Docker image
-      run: |
-        docker buildx build . --file pulumi.dockerfile \
-          --tag baoduy2412/dev-environments-pulumi:${{env.version}} \
-          --tag baoduy2412/dev-environments-pulumi:latest \
-          --cache-from=baoduy2412/dev-environments-pulumi:latest \
-          --push --platform=linux/arm64,linux/amd64
-        
-        
-        
-    
+  dotnet_pack_release_job:
+    uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
+    with:
+      dockerFile: 'pulumi.dockerfile'
+      context: '.'
+      imageName: 'baoduy2412/dev-environments-pulumi'
+      platforms: linux/arm64,linux/amd64
+    secrets:
+      DOCKER_USERNAME: baoduy2412
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}

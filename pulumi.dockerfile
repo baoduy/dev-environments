@@ -10,8 +10,8 @@ USER root
 # Install tools
 RUN apt-get update -y \
     && apt-get install curl -y \
-    && apt-get install git git \
-    && && apt-get -y install sudo
+    && apt-get install git -y \
+    && apt-get install sudo -y
 
 #RUN sudo apt install python3-pip -y
 #RUN pip3 install "pip>=20"

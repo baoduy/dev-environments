@@ -10,12 +10,10 @@ USER root
 # Install tools
 RUN apt-get update -y \
     && apt-get install curl -y \
-    && apt-get install git -y \
-    && apt-get install sudo -y
+    && apt-get install git -y #\
+    #&& apt-get install sudo -y
 
-#RUN sudo apt install python3-pip -y
-#RUN pip3 install "pip>=20"
-RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make \
+RUN apt add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make \
     && pip install --upgrade pip \
     && pip3 install azure-cli
 

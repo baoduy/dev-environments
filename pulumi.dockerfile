@@ -22,7 +22,8 @@ RUN apt-get update
 RUN apt-get install nodejs -y
 
 RUN npm install -g npm@latest \
-  && npm install -g npm-check-updates
+  && npm install -g npm-check-updates \
+  && npm install -g pnpm
 
 #RUN useradd -s /bin/bash -m vscode \
 #     && groupadd docker \

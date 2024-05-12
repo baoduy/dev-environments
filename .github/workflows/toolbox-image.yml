@@ -1,17 +1,19 @@
-name: Build-Docker
+name: toolbox-docker-build
 
 on:
   push:
     branches:
-      - 'main'
+    - 'main'
+    paths:
+    - toolbox.dockerfile
 
 jobs:
   dev_tool_job:
     uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
     with:
-      dockerFile: 'pulumi.dockerfile'
+      dockerFile: 'toolbox.dockerfile'
       context: '.'
-      imageName: 'baoduy2412/dev-environments-pulumi'
+      imageName: 'baoduy2412/toolbox'
       platforms: linux/arm64,linux/amd64
     secrets:
       DOCKER_USERNAME: baoduy2412

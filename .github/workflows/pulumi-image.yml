@@ -1,0 +1,20 @@
+name: pulumi-docker-build
+
+on:
+  push:
+    branches:
+    - 'main'
+    paths:
+    - pulumi.dockerfile
+
+jobs:
+  dev_tool_job:
+    uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
+    with:
+      dockerFile: 'pulumi.dockerfile'
+      context: '.'
+      imageName: 'baoduy2412/dev-env-pulumi'
+      platforms: linux/arm64,linux/amd64
+    secrets:
+      DOCKER_USERNAME: baoduy2412
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}

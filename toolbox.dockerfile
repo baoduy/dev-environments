@@ -1,4 +1,6 @@
-FROM alpine:latest
+FROM --platform=$BUILDPLATFORM alpine:latest
+ARG TARGETARCH
+ARG BUILDPLATFORM
 
 #install tools
 RUN apk --no-cache add curl

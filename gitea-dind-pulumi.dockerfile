@@ -12,12 +12,12 @@ RUN curl -fsSL https://get.pulumi.com | sh
 
 
 # install azure-cli
-RUN apk add py3-pip -q
-RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make -q
-RUN pip install --upgrade pip -q --break-system-packages
-RUN pip install azure-cli -q --break-system-packages
-RUN rm -rf /var/cache/apk/*
+#RUN apk add py3-pip -q
+#RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make -q
+#RUN pip install --upgrade pip -q --break-system-packages
+#RUN pip install azure-cli -q --break-system-packages
+#RUN rm -rf /var/cache/apk/*
 
 # Ensure the tool installed sucessfully
-RUN az --version
+#RUN az --version
 RUN pulumi version

@@ -12,8 +12,7 @@ RUN apt-get update -y \
     && apt-get install curl -y \
     && apt-get install git -y
 
-RUN apt-get update
-RUN apt-get install -y ca-certificates curl gnupg
+RUN apt-get install -y ca-certificates gnupg
 RUN mkdir -p /etc/apt/keyrings
 RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 

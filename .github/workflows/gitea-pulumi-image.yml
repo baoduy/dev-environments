@@ -1,0 +1,20 @@
+name: gitea-pulumi-docker-build
+
+on:
+  push:
+    branches:
+    - 'main'
+    paths:
+    - gitea-dind-pulumi.dockerfile
+
+jobs:
+  dev_tool_job:
+    uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
+    with:
+      dockerFile: 'gitea-dind-pulumi.dockerfile'
+      context: '.'
+      imageName: 'baoduy2412/gitea-dind-pulumi'
+      platforms: linux/arm64,linux/amd64
+    secrets:
+      DOCKER_USERNAME: baoduy2412
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}

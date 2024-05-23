@@ -9,8 +9,8 @@ USER root
 
 # Install tools
 RUN apt-get update -y \
-    && apt-get install curl -y \
-    && apt-get install git -y
+  && apt-get install curl -y \
+  && apt-get install git -y
 
 RUN apt-get install -y ca-certificates gnupg
 RUN mkdir -p /etc/apt/keyrings
@@ -23,6 +23,7 @@ RUN apt-get install nodejs -y
 RUN npm install -g npm@latest \
   && npm install -g npm-check-updates
 
+RUN COPY ./certs /etc/ssl/certs
 #RUN useradd -s /bin/bash -m vscode \
 #     && groupadd docker \
 #     && usermod -aG docker vscode

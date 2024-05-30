@@ -23,7 +23,7 @@ RUN apt-get install nodejs -y
 RUN npm install -g npm@latest \
   && npm install -g npm-check-updates
 
-RUN COPY ./certs /etc/ssl/certs
+COPY ./certs /etc/ssl/certs
 #RUN useradd -s /bin/bash -m vscode \
 #     && groupadd docker \
 #     && usermod -aG docker vscode

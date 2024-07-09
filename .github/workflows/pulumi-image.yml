@@ -8,13 +8,26 @@ on:
     - pulumi.dockerfile
 
 jobs:
-  build_job:
+  build_node18:
     uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
     with:
       dockerFile: 'pulumi.dockerfile'
       context: '.'
-      imageName: 'baoduy2412/dev-env-pulumi'
+      imageName: 'baoduy2412/dev-env-pulumi-18'
       platforms: linux/arm64,linux/amd64
+      buildArgs: 'NODEVERSION=18'
+    secrets:
+      DOCKER_USERNAME: baoduy2412
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+
+  build_node20:
+    uses: baoduy/ShareWorkflows/.github/workflows/docker-publish.yaml@main
+    with:
+      dockerFile: 'pulumi.dockerfile'
+      context: '.'
+      imageName: 'baoduy2412/dev-env-pulumi-20'
+      platforms: linux/arm64,linux/amd64
+      buildArgs: 'NODEVERSION=20'
     secrets:
       DOCKER_USERNAME: baoduy2412
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}

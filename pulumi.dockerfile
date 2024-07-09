@@ -37,7 +37,7 @@ ENV PATH="$PATH:/.pulumi/bin"
 
 # Ensure the tool installed sucessfully
 RUN node --version
-RUN pnpm --version
+RUN npm --version
 RUN az --version
 RUN pulumi version
 

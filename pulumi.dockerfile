@@ -21,8 +21,10 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesourc
 RUN apt-get update
 RUN apt-get install nodejs -y
 
-RUN npm install -g npm@latest \
+RUN npm install -g npm \
   && npm install -g npm-check-updates
+
+RUN npm install -g pnpm
 
 COPY ./certs /etc/ssl/certs
 #RUN useradd -s /bin/bash -m vscode \

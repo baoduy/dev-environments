@@ -10,6 +10,8 @@ RUN apk update && \
     apk add --no-cache curl libc6-compat
 RUN curl -fsSL https://get.pulumi.com | sh
 
+# install pnpm
+npm install -g pnpm
 
 # install azure-cli
 #RUN apk add py3-pip -q
